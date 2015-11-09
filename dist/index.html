@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en-US" ng-app="ecodistrict">
+<head>
+	<meta charset="UTF-8">
+	<title>Ecodistrict</title>
+
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.2/mapbox-gl.css' rel='stylesheet' />
+	<link rel="stylesheet" href="index.css" />
+
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.2/mapbox-gl.js'></script>
+	<script type="text/javascript" src="index.js"></script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	
+</head>
+<body ng-controller="mapCtrl">
+	
+	<div id="branding">
+		<a ng-if="status=='start'" class="pure-button pure-button-primary" href="" ng-click="getLocation()">Me localiser</a>
+		<a ng-if="status=='located'" class="pure-button pure-button-primary" href="" ng-click="quitLocation()">Retour à la vue générale</a>
+		<p ng-if="status=='locating'" class="animated flash">... en cours de recherche ...</p>
+	</div>
+	
+	
+	<div id="display-modes-box" class="pure-form">
+		<select ng-model="current_display_mode" ng-options="mode.name for mode in display_modes"></select>
+		<div class="checkbox-container">
+			<input type="checkbox" ng-model="show_pois" id="show-pois-checkbox" />
+			<label for="show-pois-checkbox">Afficher les travaux d'économie d'energie financés en 2014</label>
+		</div>
+		<div id="pois-types" class="animated fadeIn" ng-if="show_pois">
+			<div class="type" ng-repeat="type in pois_types track by $index">
+				<div class="color-circle" style="background-color:{{type[1]}}"></div>
+				<p>{{type[0]}}</p>
+			</div>
+		</div>
+	</div>
+	
+	<div id="map-container">
+		
+	</div>
+	
+	<div id="min-max-scale">
+		<div class="scale" style="background-color:{{color_min}};"></div><p>Minimum &nbsp; Maximum</p><div class="scale" style="background-color:{{color_max}};"></div>
+	</div>
+	
+	<div id="infobubble-container" ng-if="infobubble" class="animated fadeIn">
+		<div id="infobubble" class="animated bounceIn">
+			<div id="infobubble-content" ng-bind-html="infobubble"></div>
+			<a id="close-btn" ng-click="closeInfobubble()">X</a>
+		</div>
+	</div>
+	
+	<script src="//localhost:35729/livereload.js" async></script>
+	
+</body>
+</html>

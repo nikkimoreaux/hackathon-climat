@@ -1,0 +1,194 @@
+//@import (less) "../node_modules/normalize.css/normalize.css";
+@import (less) "../bower_components/pure/pure.css";
+@import (less) "animate.css";
+
+body,html,#map-container {
+	width: 100%;
+	height: 100%;
+	padding:0;
+	margin:0;
+	background-color: #DDD;
+}
+
+@banners-background: rgba(255,255,255,0.9);
+@banners-height: 60px;
+
+
+#branding {
+	background-color: @banners-background;
+	height: @banners-height;
+	top:0px;
+	right:0px;
+	left:0px;
+	position:fixed;
+	z-index: 15;
+	
+	background-image: url('http://project-ecodistrict.nmoreaux.com/logo.png');
+	background-repeat: no-repeat;
+	background-position: 8px 8px;
+
+	box-sizing: border-box;
+	padding:13px;
+	
+	* {
+		float:right;
+	}
+}
+
+#display-modes-box {
+	background-color: @banners-background;
+	
+	border-radius: 0 0 10px 0;
+
+	width: 250px;
+	
+	position:absolute;
+	top: @banners-height;
+	left: 0px;
+	
+	padding: 10px;
+	
+	z-index:5;
+	
+	
+	select {
+		display:block;
+		width:100%;
+	}
+	.checkbox-container {
+		padding-top:10px;
+		input {
+			float: left;
+			position:relative;
+			top:17px;
+		}
+		label {
+			display: block;
+			padding-left:26px;
+		}
+	}
+	
+	
+	@color-circle-radius: 40px;
+	@color-circle-margin: 8px;
+	#pois-types {
+		
+		padding:@color-circle-margin;
+	
+		.type {
+			margin-top: @color-circle-margin;
+		
+			.color-circle {
+				height:@color-circle-radius;
+				width:@color-circle-radius;
+				border-radius:@color-circle-radius;
+				border: 2px solid #ccc;
+				box-sizing: border-box;
+				float:left;
+			}
+			p {
+				line-height:@color-circle-radius;
+				color: #333;
+				padding-left: @color-circle-radius + @color-circle-margin;
+				margin:0;
+				padding-right: 13px;
+				font-size:16px;
+			}
+		}
+	
+	}
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+	margin: 20px 20px 0 0;
+	float: right;
+}
+.mapboxgl-ctrl-attrib.mapboxgl-ctrl {
+	opacity:0.005;
+}
+
+#min-max-scale {
+	background-color: @banners-background;
+	z-index: 50;
+	position:fixed;
+	bottom:0;
+	right:0;
+	padding:10px 10px 5px;
+	border-radius: 10px 0 0 0;
+	vertical-align: middle;
+	line-height:20px;
+	.scale {
+		width:18px;
+		height:18px;
+		display:inline-block;
+		border: 1px solid #999;
+	}
+	p {
+		display:inline-block;
+		height:20px;
+		line-height:20px;
+		margin: 0 10px;
+		position:relative;
+		top:-4px;
+	}
+}
+
+#infobubble-container {
+	top: 0;
+	bottom:0;
+	left:0;
+	right:0;
+	position: absolute;
+	background-color: rgba(255,255,255,0.8);
+	z-index: 100;
+	
+	padding: @banners-height + 20px 20px 0;
+	
+	overflow: scroll;
+	
+	#infobubble {
+		max-width: 600px;
+		
+		padding:20px;
+		
+		background-color: #fff;
+		border-radius: 5px;
+		border: 2px solid #999;
+		
+		position:relative;
+		margin: auto;
+		
+		box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+		
+		#infobubble-content {
+			* {
+				margin-top:0;
+			}
+			img {
+				display:block;
+				max-width:100%;
+			}
+		}
+	}
+	
+	#close-btn {
+		position: absolute;
+		top:0;
+		right:0;
+		width: 30px;
+		height: 30px;
+		background-color: #999;
+		color: #fff;
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 30px;
+
+		border-radius: 0 0 0 5px;
+		
+		text-align: center;
+		
+		display: block;
+		cursor: pointer;
+		
+	}
+}
